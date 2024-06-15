@@ -14,15 +14,19 @@ ENV RUNNING_IN_DOCKER true
 # NOTE: /workspaces/react-playground is the directory for this project, so RUN npm install here.
 #WORKDIR /workspaces
 #WORKDIR /dev/workspaceExample
-WORKDIR /workspaces/react-playground-vite
+#WORKDIR /workspaces/react-playground-vite
+WORKDIR /workspaces/react-vite-notes-app
 
 #Export the path to the node_modules/.bin directory to the $PATH environment variable
-ENV PATH /workspaces/react-playground-vite/node_modules/.bin:$PATH
+#ENV PATH /workspaces/react-playground-vite/node_modules/.bin:$PATH
+ENV PATH /workspaces/react-vite-notes-app/node_modules/.bin:$PATH
+
 
 # Copy package.json and package-lock.json to the container
 # unneeded as we are letting the devContainer "bind" mount the ${localWorkspaceFolder} to /workspaces
 ## per our directory structure, this includes the package.json file
 #COPY /react-playground/package.json ./
+COPY ../react-vite-notes-app/package.json ./
 
 # Install 'vite' globally
 #RUN npm install -g vite
