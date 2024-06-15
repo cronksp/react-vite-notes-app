@@ -2,7 +2,7 @@
 # Dockerfile for the "React Playground" project, a general react playground for testing and learning react concepts
 
 # Use the official image as a parent image
-FROM node:22
+FROM node:18
 
 # Let scripts know we're running in Docker (useful for containerised development)
 ENV RUNNING_IN_DOCKER true
@@ -24,8 +24,12 @@ ENV PATH /workspaces/react-playground-vite/node_modules/.bin:$PATH
 ## per our directory structure, this includes the package.json file
 #COPY /react-playground/package.json ./
 
+# Install 'vite' globally
+#RUN npm install -g vite
+
 # Install dependencies from the package.json file within the container
-RUN npm install --silent
+#RUN npm install --silent
+RUN npm install
 
 # Copy the current directory contents into the container at /workspace after npm install to avoid re-installing dependencies
 # unneeded as we are letting the devContainer "bind" mount the ${localWorkspaceFolder} to /workspaces
