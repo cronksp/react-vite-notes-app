@@ -21,7 +21,7 @@ const ThemeSwitcher = ({ setTheme }: { setTheme: (theme: string | null) => void 
           className="text-capitalize"
           variant={currentTheme ? currentTheme : "secondary"}
         >
-          {"Default"}
+          {currentTheme ? currentTheme : "Theme"}
         </Button>
         <Dropdown.Toggle
           split
