@@ -2,7 +2,7 @@
 # Dockerfile for the "React Playground" project, a general react playground for testing and learning react concepts
 
 # Use the official image as a parent image
-FROM node:14
+FROM node:22
 
 # Let scripts know we're running in Docker (useful for containerised development)
 ENV RUNNING_IN_DOCKER true
@@ -14,10 +14,10 @@ ENV RUNNING_IN_DOCKER true
 # NOTE: /workspaces/react-playground is the directory for this project, so RUN npm install here.
 #WORKDIR /workspaces
 #WORKDIR /dev/workspaceExample
-WORKDIR /workspaces/react-playground
+WORKDIR /workspaces/react-playground-vite
 
 #Export the path to the node_modules/.bin directory to the $PATH environment variable
-ENV PATH /workspaces/react-playground/node_modules/.bin:$PATH
+ENV PATH /workspaces/react-playground-vite/node_modules/.bin:$PATH
 
 # Copy package.json and package-lock.json to the container
 # unneeded as we are letting the devContainer "bind" mount the ${localWorkspaceFolder} to /workspaces
@@ -42,8 +42,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Define the non root user (DevConUser) to use when running the container
 # NOTE: Make this a unique USERNAME/GID/UID for your project (I've had issues with the default 1000 being used by other containers)
-ARG USERNAME=DevConUser2
-ARG USER_UID=1001
+ARG USERNAME=DevConUser3
+ARG USER_UID=1002
 ARG USER_GID=$USER_UID
 
 # Create the user
@@ -76,4 +76,4 @@ ENV CHOKIDAR_USEPOLLING=true
 #ENV WATCHPACK_POLLING=true
 
 #CMD ["npm install"]
-CMD ["zsh","npm", "start"]
+#CMD ["zsh","npm", "start"]

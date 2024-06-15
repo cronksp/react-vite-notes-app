@@ -5,8 +5,8 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	//"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye"
 
-	"dockerFile": "../react-playground/.docker/dev/Dockerfile",
-	//"dockerFile": "../react-playground-vite/.docker/dev/Dockerfile",
+	//"dockerFile": "../react-playground/.docker/dev/Dockerfile",
+	"dockerFile": "../react-vite-notes-app/.docker/dev/Dockerfile",
 
 	// Set the build context one dir up to include sibling folders in build context
 	// Or use "." if the Dockerfile is in the root of your project
