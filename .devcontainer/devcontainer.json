@@ -1,0 +1,64 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "React Playground",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	//"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye"
+
+	"dockerFile": "../react-playground/.docker/dev/Dockerfile",
+	//"dockerFile": "../react-playground-vite/.docker/dev/Dockerfile",
+
+	// Set the build context one dir up to include sibling folders in build context
+	// Or use "." if the Dockerfile is in the root of your project
+	"context": "..",  
+
+	// Set the workspaceMount and workspaceFolder config for the project
+	//NOTE : Currently letting vscode handle the workspace folder, defaults to /workspaces
+	//"workspaceMount": "source=/${localWorkspaceFolder},target=/dev/workspaceExample,type=bind",
+	//"workspaceFolder": "/dev/workspaceExample",
+
+	// Use a docker-compose file
+	//"dockerComposeFile": "../react-playground/.docker/dev/docker-compose.yml",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "yarn install",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+"customizations":{
+	"settings:":{
+		"editor.tabSize": 4,
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"terminal.integrated.profiles.linux": {
+			  "zsh": {
+				"path": "zsh"
+			  }
+			},
+		"terminal.integrated.fontFamily": "Agave Nerd Font Mono"
+	},
+	"vscode": {
+		"extensions": [
+			"aaron-bond.better-comments",
+			"adpyke.codesnap",
+			"esbenp.prettier-vscode"
+		]
+	}
+},
+"mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=devcontainer-zshistory,target=/commandhistory,type=volume"
+  ],
+// Use 'postCreateCommand' to run commands after the container is created.
+//"postCreateCommand": ["cd ~/workspaces/react-playground/", "npm install"]
+
+}
