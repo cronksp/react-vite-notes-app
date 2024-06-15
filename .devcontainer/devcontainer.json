@@ -1,12 +1,12 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-	"name": "React Playground",
+	"name": "React Playground Vite",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	//"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye"
 
 	//"dockerFile": "../react-playground/.docker/dev/Dockerfile",
-	"dockerFile": "../react-vite-notes-app/.docker/dev/Dockerfile",
+	"dockerFile": "../.docker/dev/Dockerfile",
 
 	// Set the build context one dir up to include sibling folders in build context
 	// Or use "." if the Dockerfile is in the root of your project
