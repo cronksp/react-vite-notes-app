@@ -1,0 +1,11 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Additional styles for appearance */
+    /*background-color: #1abe8d; /* Example background color */
+    background-color: var(--header-bg-color, #ffffff); /* Example background color */
+    /*box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Example shadow for depth */
+    box-shadow: var(--header-shadow, 0 2px 4px rgba(0,0,0,0.1)); /* Fallback shadow */
+  }
