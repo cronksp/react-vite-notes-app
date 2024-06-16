@@ -3,10 +3,11 @@ import Button from "react-bootstrap/Button";
 import EditNoteModal from "../Modals/EditNoteModal";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import "./Notes.css";
 
 function Notes() {
   const [notes, setNotes] = useState<string[]>([]);
-  const [currentNote, setCurrentNote] = useState("");
+  const [currentNote, setCurrentNote] = useState<string>("");
   const [showEditModal, setshowEditModal] = useState(false);
   const [editIndex, setEditIndex] = useState<number>(-1);
 
@@ -31,17 +32,17 @@ function Notes() {
   };
 
   // Function to handle closing the modal
+  /*
   const handleCloseEditModal = () => {
     setshowEditModal(false);
   };
+  */
 
   return (
     <>
       <div>
-        <h1>Notes App test</h1>
         <Form>
           <Form.Group controlId="formBasicNote">
-            <Form.Label>Enter a note</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter a note"
@@ -49,8 +50,9 @@ function Notes() {
               onChange={(e) => setCurrentNote(e.target.value)}
             />
           </Form.Group>
+        <div> </div>
         </Form>
-        <button onClick={addNote}>Add</button>
+        <button onClick={addNote} className="button">Add</button>
         <ListGroup numbered>
           {notes.map((note, index) => (
             <ListGroupItem
@@ -76,12 +78,12 @@ function Notes() {
         </ListGroup>
       </div>
       {/* 
-      EditNoteModal is a custom modal codddmponent that allows you to edit a note
+      EditNoteModal is a custom modal component that allows you to edit a note
       Passing "set" functions allows the child component to update the parent component state 
       */}
       <EditNoteModal
         show={showEditModal} // showEditModal is a boolean that determines if the modal is open or closed
-        handleClose={setshowEditModal} // setshowEditModal is a function that allows you to update the showEditModal variable
+        handleClose={() => setshowEditModal(false)} // setshowEditModal is a function that allows you to update the showEditModal variable
         noteToEdit={notes[editIndex]} // noteToEdit is the note that is being edited
         editIndex={editIndex} // editIndex is the index of the note that is being edited
         setNotes={setNotes} // setNotes is a function that allows you to update the notes array
