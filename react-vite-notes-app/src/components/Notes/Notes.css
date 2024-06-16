@@ -1,5 +1,6 @@
 .notes-section {
     display: flex;
+    flex-grow: 1; /* Grow to fill the available space */
     flex-direction: column; /* Stack notes vertically */
     align-items: center; /* Center notes horizontally */
     padding: 50px;
@@ -10,7 +11,7 @@
     position: relative;
     display: flex;
     align-items: center; /* Center children horizontally */
-    justify-content: left; /* Center children vertically if there's enough space */
+    justify-content: center; /* Center children vertically if there's enough space */
     width: 100%; /* Or a fixed width, depending on your design */
     padding: 20px
   }
