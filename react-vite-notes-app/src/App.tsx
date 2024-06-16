@@ -12,7 +12,7 @@ function App() {
   return (
       <div>
         <Header theme={theme} setTheme={setTheme}/>
-        <Stack spacing={20}>
+        <Stack spacing={10}>
           <Notes />
         </Stack>
       </div>

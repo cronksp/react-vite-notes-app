@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import EditNoteModal from "../Modals/EditNoteModal";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import "./Notes.css";
+import Stack from "@mui/material/Stack";
 
 function Notes() {
   const [notes, setNotes] = useState<string[]>([]);
@@ -11,6 +12,24 @@ function Notes() {
   const [showEditModal, setshowEditModal] = useState(false);
   const [editIndex, setEditIndex] = useState<number>(-1);
 
+  // Load notes from localStorage when the component mounts
+  useEffect(() => {
+    const savedNotes = localStorage.getItem('notes');
+    if (savedNotes) {
+      setNotes(JSON.parse(savedNotes) as string[]);
+      console.log('saved notes: ' + savedNotes);
+      console.log('parsed saved notes: ' + JSON.parse(savedNotes))
+      console.log('saved notes (notes): ' + notes);
+
+    }
+  }, []);
+
+  // Update localStorage whenever notes change
+  useEffect(() => {
+    console.log('new notes: ' + notes);
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
+  
   // addNote() function adds the currentNote to the notes array
   const addNote = () => {
     // trim() removes whitespace from both ends of a string
@@ -31,16 +50,19 @@ function Notes() {
     setNotes(updatedNotes);
   };
 
-  // Function to handle closing the modal
-  /*
-  const handleCloseEditModal = () => {
-    setshowEditModal(false);
+  const matButtonctm = {
+    display: "flex",
+    alignItems: "center", /* Center children horizontally */
+    justifyContent: "center", /* Center children vertically if there's enough space */
+    padding: "10px",
+    margin: "10px",
+    width: "100px",
   };
-  */
 
   return (
     <>
-      <div>
+      <Stack spacing={4} className="notes-section">
+        <Stack direction="row" spacing={2} className="notes-container-add-note">
         <Form>
           <Form.Group controlId="formBasicNote">
             <Form.Control
@@ -50,22 +72,25 @@ function Notes() {
               onChange={(e) => setCurrentNote(e.target.value)}
             />
           </Form.Group>
-        <div> </div>
         </Form>
-        <button onClick={addNote} className="button">Add</button>
-        <ListGroup numbered>
+        <Button onClick={addNote} >Add</Button>
+        </Stack>
+        <ListGroup numbered >
           {notes.map((note, index) => (
             <ListGroupItem
               key={index}
-              className="d-flex justify-content-between align-items-start"
+              //className="d-flex justify-content-between align-items-start"
+              className="notes-container-item"
             >
               {note}
-              <Button variant="danger" onClick={() => deleteNote(index)}>
+              <Stack direction="row">
+              <Button variant="danger" 
+              style={matButtonctm} onClick={() => deleteNote(index)}>
                 Delete
               </Button>
               <Button
                 variant="primary"
-                //onClick={() => handleOpenEditModal(index)}
+                style={matButtonctm}
                 onClick={() => {
                   setEditIndex(index);
                   setshowEditModal(true);
@@ -73,10 +98,11 @@ function Notes() {
               >
                 Edit {/* Edit button -> opens "edit modal" */}
               </Button>
+              </Stack>
             </ListGroupItem>
           ))}
         </ListGroup>
-      </div>
+        </Stack>
       {/* 
       EditNoteModal is a custom modal component that allows you to edit a note
       Passing "set" functions allows the child component to update the parent component state 

@@ -1,23 +1,14 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 
-/*
-const updateArray = (editedNote: string, editIndex: number, notes: string[] = [], setNotes: (notes: string[] | null) => void) => {
-  const updatedNotes = [...notes];
-  updatedNotes[editIndex] = editedNote;
-  setNotes(updatedNotes);
-};
-*/
-
 type EditNoteModalProps = {
   show: boolean;
   handleClose: () => void;
   noteToEdit: string;
   editIndex: number;
   notes: string[] | null;
-  //setNotes: (notes: string[] | null) => void;
-  //setNotes: any
-  setNotes: React.Dispatch<React.SetStateAction<string[]>>;
+  setNotes: (notes: string[]) => void;
+  //setNotes: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const EditNoteModal: React.FC<EditNoteModalProps> = ({
@@ -28,21 +19,9 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
   notes,
   setNotes,
 }) => {
+
   //set state variables
   const [editedNote, setEditedNote] = useState<string>("");
-
-  /*
-  const updateArray = (
-    editedNote: string | null,
-    editIndex: number,
-    notes: string[] | null,
-    setNotes: (notes: string[] | null) => void
-  ) => {
-    const updatedNotes = notes ? [...notes] : [];
-    updatedNotes[editIndex] = editedNote ?? ""; // Provide a default value for editedNote
-    setNotes(updatedNotes);
-  };
-  */
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -72,6 +51,7 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
               const updatedNotes = [...notes];
               updatedNotes[editIndex] = editedNote || ""; // Use editedNote or an empty string if editedNote is null
               setNotes(updatedNotes);
+              localStorage.setItem("notes", JSON.stringify(updatedNotes));
             }
             handleClose();
           }}

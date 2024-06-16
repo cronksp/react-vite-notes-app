@@ -5,7 +5,8 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  // Copilot - Your console logs might be hitting twice due to React's StrictMode.
+  //<React.StrictMode>
     <App />
-  </React.StrictMode>
+  //</React.StrictMode>
 )
