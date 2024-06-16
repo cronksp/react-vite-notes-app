@@ -76,7 +76,7 @@ function Notes() {
               onChange={(e) => setCurrentNote(e.target.value)}
               style={{ flexGrow: 1, marginRight: '10px' }}
             />
-          <Button style={matButtonctm}>Add</Button>
+          <Button type="submit" style={matButtonctm}>Add</Button>
           </div>
           </Form.Group>
         </Form>
