@@ -31,7 +31,10 @@ function Notes() {
   }, [notes]);
   
   // addNote() function adds the currentNote to the notes array
-  const addNote = () => {
+  const addNote = (event: React.FormEvent<HTMLFormElement>) => {
+
+    event.preventDefault(); // Prevent the default form submission behavior (stops page reload)
+
     // trim() removes whitespace from both ends of a string
     // if the currentNote is not empty, add it to the notes array
     if (currentNote.trim() !== "") {
@@ -63,23 +66,25 @@ function Notes() {
     <>
       <Stack spacing={4} className="notes-section">
         <Stack direction="row" spacing={2} className="notes-container-add-note">
-        <Form>
-          <Form.Group controlId="formBasicNote">
+        <Form onSubmit={addNote}>
+          <Form.Group controlId="formBasicNote" style={{ display: 'flex', alignItems: 'center' }}>
+            <div>
             <Form.Control
               type="text"
               placeholder="Enter a note"
               value={currentNote}
               onChange={(e) => setCurrentNote(e.target.value)}
+              style={{ flexGrow: 1, marginRight: '10px' }}
             />
+          <Button style={matButtonctm}>Add</Button>
+          </div>
           </Form.Group>
         </Form>
-        <Button onClick={addNote} >Add</Button>
         </Stack>
         <ListGroup numbered >
           {notes.map((note, index) => (
             <ListGroupItem
               key={index}
-              //className="d-flex justify-content-between align-items-start"
               className="notes-container-item"
             >
               {note}
