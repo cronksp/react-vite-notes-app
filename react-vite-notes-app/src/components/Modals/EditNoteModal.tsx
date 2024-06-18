@@ -1,5 +1,6 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+//import "./basic_modal/basic_modal.css"
 
 type EditNoteModalProps = {
   show: boolean;
@@ -8,13 +9,11 @@ type EditNoteModalProps = {
   editIndex: number;
   notes: string[] | null;
   setNotes: (notes: string[]) => void;
-  //setNotes: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const EditNoteModal: React.FC<EditNoteModalProps> = ({
   show,
   handleClose,
-  noteToEdit,
   editIndex,
   notes,
   setNotes,
@@ -24,20 +23,22 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
   const [editedNote, setEditedNote] = useState<string>("");
 
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Edit Note</Modal.Title>
-        {noteToEdit}
+    <Modal show={show} onHide={handleClose} className="modal">
+      <Modal.Header closeButton className="modal-header">
+        <Modal.Title className="modal-title">Edit Note</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="modal-body">
         <input
+          className="modal-input"
           type="text"
           placeholder="Update note"
+          value={editedNote} // Ensure the input is controlled by adding value prop
           onChange={(e) => setEditedNote(e.target.value)}
         />
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className="modal-footer">
         <button
+          className="modal-close-btn"
           onClick={(e) => {
             handleClose();
           }}
@@ -45,8 +46,8 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
           Close
         </button>
         <button
+          className="modal-save-btn"
           onClick={(e) => {
-            //updateArray(editedNote, editIndex, notes /*,setNotes*/);
             if (notes) {
               const updatedNotes = [...notes];
               updatedNotes[editIndex] = editedNote || ""; // Use editedNote or an empty string if editedNote is null
